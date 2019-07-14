@@ -91,7 +91,7 @@ class ScrollBar extends Component {
     }
 
     // 创建实例
-    init () {
+    init = () => {
         const {
             className,
             resize,
