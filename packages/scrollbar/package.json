@@ -1,5 +1,5 @@
 {
-    "name": "@royhsu/scrollbar",
+    "name": "royscrollbar",
     "version": "0.0.6",
     "description": "scroll",
     "main": "index.js",
@@ -10,5 +10,5 @@
     },
     "author": "",
     "license": "MIT",
-    "gitHead": "b84b86a7f12b2db896b6cb1d6ae4a602f151da40"
+    "gitHead": "94f08845bb3538d31b8256bc339f75b807549407"
 }
