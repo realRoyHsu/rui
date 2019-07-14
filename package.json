@@ -1,7 +1,7 @@
 {
   "name": "rui",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "workspaces": [
     "packages/*"
   ],
@@ -130,5 +130,9 @@
     "node-sass": "^4.12.0",
     "redux-devtools-extension": "^2.13.8",
     "require-uncached": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:realRoyHsu/rui.git"
   }
 }
