@@ -3,9 +3,6 @@
     "version": "0.0.2",
     "description": "scroll",
     "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
     "dependencies": {
         "overlayscrollbars": "^1.8.0",
         "prop-types": "^15.7.2",
