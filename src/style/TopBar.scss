@@ -1,0 +1,42 @@
+
+.r_header {
+    .avater {
+        position: relative;
+        top: -3px;
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+        }
+    }
+    .ant-menu-item {
+        border-bottom: 2px solid transparent !important;
+    }
+    .ant-menu-item-active {
+        border-bottom: 2px solid blue !important;
+    }
+
+}
+
+
+//
+.r_sub_menu {
+    .ant-menu-sub {
+        background: #fff !important;
+    }
+
+    .ant-menu-item-group-title {
+        color: #ccc !important;
+    }
+    .ant-menu-item {
+        color: #333 !important;
+    }
+    .ant-menu-item:hover {
+        color: #1890ff !important;
+    }
+    .ant-menu-item-selected {
+        background-color: #e6f7ff !important;
+        color: #1890ff !important;
+    }
+
+}

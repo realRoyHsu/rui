@@ -1,0 +1,16 @@
+{
+    "name": "scrollbar",
+    "version": "0.0.1",
+    "description": "scroll",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "overlayscrollbars": "^1.8.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.6"
+    },
+    "author": "",
+    "license": "MIT"
+}
