@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import { Layout, Button } from 'antd';
 
-import { ScrollBar } from '@/common/ScrollBar.jsx';
+// import { ScrollBar } from '@/common/ScrollBar.jsx';
+import ScrollBar from 'react-overlayscrollbars';
 
 import Routes from '@/router';
 import TopBar from './TopBar.jsx';

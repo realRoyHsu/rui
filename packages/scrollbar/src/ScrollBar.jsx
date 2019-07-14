@@ -29,7 +29,7 @@ class ScrollBar extends Component {
         this.destroy();
     }
 
-    init = () => {
+    init () {
         const {
             className,
             resize,
