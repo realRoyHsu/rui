@@ -1,6 +1,6 @@
 {
     "name": "scrollbar",
-    "version": "0.0.2",
+    "version": "0.0.1",
     "description": "scroll",
     "main": "index.js",
     "scripts": {
@@ -12,5 +12,6 @@
         "react": "^16.8.6"
     },
     "author": "",
-    "license": "MIT"
+    "license": "MIT",
+    "gitHead": "71d5de0f5f029fe4060bf65a82638ea71656066e"
 }
