@@ -1,6 +1,6 @@
 {
     "name": "react-overlayscrollbars",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "scroll",
     "main": "index.js",
     "dependencies": {
