@@ -5,7 +5,7 @@ import { Layout, Button } from 'antd';
 // import { ScrollBar } from '@/common/ScrollBar.jsx';
 // import ScrollBar from 'react-overlayscrollbars';
 
-import {ScrollBar} from './../../packages/scrollbar/es/scrollbar';
+import ScrollBar from './../../packages/scrollbar/';
 import './../../packages/scrollbar/es/scrollbar.css';
 
 import Routes from '@/router';
