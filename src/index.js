@@ -8,11 +8,11 @@ import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
 // import Root from './router/index.jsx';
 
-ReactDOM.render((
+ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>
-), document.getElementById('root'));
+, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

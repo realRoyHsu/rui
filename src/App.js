@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NotFound from '@/common/NotFound.jsx';
 import Main from '@/common/Main.jsx';
 
+
 /* App component */
 class App extends Component {
     render () {

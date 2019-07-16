@@ -45,7 +45,7 @@ class ScrollBar extends Component {
             textarea,
             callbacks,
         } = this.props;
-        this.setState({ instance : OverlayScrollbars(this.refs.scrollbar, {
+        this.setState({ instance : OverlayScrollbars(this.ScrollbarRef, {
             className,
             resize,
             sizeAutoCapable,
@@ -106,7 +106,7 @@ class ScrollBar extends Component {
 
     render() {
         return (
-            <div ref="scrollbar">
+            <div ref={el => this.ScrollbarRef = el}>
                 {/* eslint-disable-next-line */}
                 {this.props.children}
             </div>

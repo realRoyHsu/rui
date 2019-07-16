@@ -32,7 +32,7 @@
     "rules": {
         // rules中的值0、1、2分别表示不开启检查、警告、错误
         "indent": 0, // JavaScript代码强制使用一致的缩进：4格缩进
-        "linebreak-style": ["error", "unix"], // 强制使用一致的换行符风格 (linebreak-style)
+        "linebreak-style": [2, "unix"], // 强制使用一致的换行符风格 (linebreak-style)
         "eol-last": 0, //文件以单一的换行符结束
         "quotes": [
             "error",
