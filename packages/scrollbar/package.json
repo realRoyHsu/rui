@@ -2,8 +2,8 @@
     "name": "react-overlayscrollbars",
     "version": "0.0.9",
     "description": "scroll",
-    "main": "cjs/scrollbar.js",
-    "module": "es/index.js",
+    "main": "es/scrollbar.js",
+    "module": "es/scrollbar.js",
     "dependencies": {
         "overlayscrollbars": "^1.8.0",
         "prop-types": "^15.7.2",
