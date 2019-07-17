@@ -11,5 +11,18 @@
     },
     "author": "",
     "license": "MIT",
-    "gitHead": "03653f65dfb2dbc1494dfadac76a52ba25bb0300"
+    "gitHead": "03653f65dfb2dbc1494dfadac76a52ba25bb0300",
+    "keywords": [
+        "overlayscrollbars",
+        "custom",
+        "scrollbar",
+        "scrollbars",
+        "scroll",
+        "frontend"
+    ],
+    "homepage": "https://github.com/realRoyHsu/rui/tree/master/packages/scrollbar",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/realRoyHsu/rui.git"
+    }
 }

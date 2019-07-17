@@ -1,6 +1,6 @@
 export default {
     menus: [
-        { key: '/main/dashboard/index', title: '首页', icon: 'home', component: 'Dashboard' },
+        { key: '/main/dashboard/index', title: 'Home', icon: 'home', component: 'Dashboard' },
         {
             key: '/main/OverlayScrollbars',
             title: 'OverlayScrollbars',
