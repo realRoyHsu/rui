@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const packages = path.resolve(__dirname,'..','packages');
+const { ruiPath } = require('./../package.json');
+
+const packages = path.resolve(__dirname,'..',ruiPath);
 
 let components = fs.readdirSync(packages);
 

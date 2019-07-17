@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import { Layout, Button } from 'antd';
 
-import ScrollBar from 'react-overlayscrollbars';
-import 'react-overlayscrollbars/es/scrollbar.css';
+// import ScrollBar from 'react-overlayscrollbars';
 
 // import { ScrollBar } from '@/common/ScrollBar.jsx';
-// import ScrollBar from './../../packages/scrollbar/';
-// import './../../packages/scrollbar/es/scrollbar.css';
+import ScrollBar from './../../packages/scrollbar/';
+import './../../packages/scrollbar/es/index.css';
 
 import Routes from '@/router';
 import TopBar from './TopBar.jsx';
 import SiderBar from './SiderBar.jsx';
-console.log(ScrollBar,'ScrollBar...');
 
 const { Footer, Content } = Layout;
 
