@@ -11,7 +11,7 @@
         "build": "node scripts/build.js",
         "test": "node scripts/test.js",
         "compile": "node rollup/rollup.config.js",
-        "publish": "lerna publish"
+        "pub": "lerna publish"
     },
     "dependencies": {
         "@babel/core": "7.1.6",
