@@ -11,7 +11,6 @@
         "start": "node scripts/start.js",
         "build": "node scripts/build.js",
         "test": "node scripts/test.js",
-
         "compile": "rollup -c rollup/rollup.config.js",
         "pub": "lerna publish"
     },
@@ -62,7 +61,7 @@
         "react-dev-utils": "^7.0.1",
         "react-document-title": "^2.0.3",
         "react-dom": "^16.7.0",
-        "react-overlayscrollbars": "^0.1.0",
+        "react-overlayscrollbars": "^0.1.2",
         "react-redux": "^7.1.0",
         "react-router-dom": "^5.0.1",
         "redux": "^4.0.1",
