@@ -27,6 +27,8 @@ import ScrollBar from 'react-overlayscrollbars';
 import 'react-overlayscrollbars/es/index.css';
 
 <ScrollBar className="roy_scroll os-theme-dark"
+        id="roy_id"
+        style={{background:'red'}}
         overflow-behavior={{ x: 'hidden' }}
         scrollbars={{ autoHide: 'l' }} >
     // ....

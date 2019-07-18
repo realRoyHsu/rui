@@ -106,7 +106,9 @@ class ScrollBar extends Component {
 
     render() {
         return (
-            <div ref={el => this.ScrollbarRef = el}>
+            <div id={this.props.id}
+                 ref={el => this.ScrollbarRef = el}
+                 style={{...this.props.style}}>
                 {/* eslint-disable-next-line */}
                 {this.props.children}
             </div>
@@ -115,6 +117,8 @@ class ScrollBar extends Component {
 }
 
 ScrollBar.propTypes = {
+    id: PropTypes.string,
+    style: PropTypes.object,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     resize: PropTypes.oneOf([
         'none',
@@ -139,6 +143,8 @@ ScrollBar.propTypes = {
     callbacks: PropTypes.object,
 };
 ScrollBar.defaultProps = {
+    id: '',
+    style: {},
     className: 'os-theme-dark',
     resize: 'none',
     sizeAutoCapable: true,

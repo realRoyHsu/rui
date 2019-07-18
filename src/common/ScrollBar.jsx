@@ -107,7 +107,7 @@ class ScrollBar extends Component {
             textarea,
             callbacks,
         } = this.props;
-        this.setState({ instance : OverlayScrollbars(this.refs.scrollbar, {
+        this.setState({ instance : OverlayScrollbars(this.scrollbar, {
             className,
             resize,
             sizeAutoCapable,
@@ -169,7 +169,9 @@ class ScrollBar extends Component {
     render() {
         console.log('render');
         return (
-            <div ref="scrollbar">
+            <div id={this.props.id}
+                 ref={el => this.scrollbar = el}
+                 style={{...this.props.style}}>
                 {/* eslint-disable-next-line */}
                 {this.props.children}
             </div>
@@ -178,6 +180,8 @@ class ScrollBar extends Component {
 }
 
 ScrollBar.propTypes = {
+    id: PropTypes.string,
+    style: PropTypes.object,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     resize: PropTypes.oneOf([
         'none',
@@ -202,6 +206,8 @@ ScrollBar.propTypes = {
     callbacks: PropTypes.object,
 };
 ScrollBar.defaultProps = {
+    id: '',
+    style: {},
     className: 'os-theme-dark',
     resize: 'none',
     sizeAutoCapable: true,
@@ -247,6 +253,4 @@ ScrollBar.defaultProps = {
     },
 };
 
-export {
-    ScrollBar
-};
+export default ScrollBar;
