@@ -18,7 +18,7 @@ export default class CRouter extends Component {
                                     <Route
                                         exact
                                         path={r.key}
-                                        render={(props)=>{
+                                        render={(props) => {
                                             // 重新包装组件
                                             const wrappedComponent = (
                                                 <DocumentTitle title={r.title}>
@@ -26,10 +26,10 @@ export default class CRouter extends Component {
                                                 </DocumentTitle>
                                             );
                                             return wrappedComponent;
-                                        }}/>
+                                        }} />
                                 );
                             };
-                            return r.component ? route(r) : r.subs.map(r=> route(r));
+                            return r.component ? route(r) : r.subs.map(r => route(r));
                         });
                     })
                 }

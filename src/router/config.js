@@ -26,5 +26,13 @@ export default {
 
             ],
         },
+        {
+            key: '/main/ReactHooks',
+            title: 'ReactHooks',
+            icon: 'bars',
+            subs: [
+                { key: '/main/ReactHooks/index', title: 'ReactHooks', component: 'ReactHooks' },
+            ],
+        },
     ],
 };
