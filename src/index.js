@@ -6,6 +6,7 @@ import store from '@/store/index.js';
 import App from '@/App';
 import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
+
 // import Root from './router/index.jsx';
 
 ReactDOM.render(

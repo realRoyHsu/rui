@@ -1,0 +1,49 @@
+// font
+.codemirror-host, .codemirror-host * {
+    font-size: 10pt !important;
+    font-family: "Fira Mono", monospace !important;
+    font-weight: 400;
+}
+
+// height
+.CodeMirror {
+    height: auto !important;
+}
+
+
+// linenumber background color
+.CodeMirror-line {
+    line-height: 24px !important;
+}
+.codemirror-host .CodeMirror-linenumber {
+    color: #fff;
+    line-height: 24px !important;
+}
+
+// error color
+.codemirror-error {
+    border-color: red !important;
+    border: 2px solid red;
+}
+
+.codemirror-host {
+    border-radius: 4px !important;
+    border: 2px solid #6461f6;
+    margin: 2px;
+    overflow: visible;
+    -webkit-transition: border-color 0.3s;
+    transition: border-color 0.3s;
+}
+
+.codemirror-host .CodeMirror-gutters {
+    background-color: #6461f6;
+    color: rgba(255, 255, 255, 0.7);
+    border-right: 1px solid #6461f6;
+    -webkit-transition: background-color 0.3s, border-color 0.3s;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.codemirror-error .CodeMirror-gutters {
+    background-color: red !important;
+    border-right: 1px solid red !important;
+}
