@@ -1,6 +1,6 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // import Basic from '@/view/Basic/index';
 import NotFound from '@/common/NotFound.jsx';
@@ -13,6 +13,10 @@ class App extends Component {
         return (
             <Router>
                 <Switch>
+                    <Route exact
+                           path="/"
+                           render={() => (<Redirect push
+                                                    to="/main/dashboard/index" />)} />
                     <Route component={Main}
                            path="/main" />
                     <Route component={NotFound}

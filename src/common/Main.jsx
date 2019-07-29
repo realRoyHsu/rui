@@ -31,7 +31,7 @@ export default class Main extends Component {
                             <ScrollBar className="roy_scroll os-theme-dark"
                                        overflow-behavior={{ x: 'hidden' }}
                                        scrollbars={{ autoHide: 'l' }} >
-                                <Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
+                                <Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0', minHeight: 'calc(100vh - 135px)' }}>
                                         <Routes />
                                 </Content>
                                 <Footer style={{ textAlign: 'center' }}>

@@ -15,10 +15,10 @@ export default class CRouter extends Component {
                             const route = r => {
                                 const Component = AllComponent[r.component];
                                 return (
-                                    <Route
-                                        exact
-                                        path={r.key}
-                                        render={(props) => {
+                                    <Route exact
+                                           key={r.key}
+                                           path={r.key}
+                                           render={(props) => {
                                             // 重新包装组件
                                             const wrappedComponent = (
                                                 <DocumentTitle title={r.title}>
