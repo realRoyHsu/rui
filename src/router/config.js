@@ -16,6 +16,9 @@ export default {
             subs: [
                 { key: '/main/ReactHooks/index', title: 'ReactHooks', component: 'ReactHooks' },
                 { key: '/main/ReactHooks/InputTimeOut', title: 'InputTimeOut', component: 'InputTimeOut' },
+                { key: '/main/ReactHooks/FetchData', title: 'FetchData', component: 'FetchData' },
+                { key: '/main/ReactHooks/FetchDatauseApi', title: 'FetchDatauseApi', component: 'FetchDatauseApi' },
+                { key: '/main/ReactHooks/FetchDatauseReducer', title: 'FetchDatauseReducer', component: 'FetchDatauseReducer' },
             ],
         },
         {
@@ -26,6 +29,8 @@ export default {
                 { key: '/main/Redux/UserWages', title: 'UserWages', component: 'UserWages' },
                 { key: '/main/Redux/UserWagesReducer', title: 'UserWagesReducer', component: 'UserWagesReducer' },
                 { key: '/main/Redux/TextInputReducer', title: 'TextInputReducer', component: 'TextInputReducer' },
+                { key: '/main/Redux/ReducerCounter', title: 'ReducerCounter', component: 'ReducerCounter' },
+                { key: '/main/Redux/StateCounterV1', title: 'StateCounterV1', component: 'StateCounterV1' },
             ],
         },
     ],

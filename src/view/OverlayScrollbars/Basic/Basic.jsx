@@ -9,6 +9,23 @@ import './basic.scss';
 export default function Basic() {
     const ScrollBarBasic = useRef(null);
     const CodeMirrorBox = useRef(null);
+
+    // const copy = () => {
+    //     var copyDOM = document.getElementById('xxx'); //需要复制文字的节点
+    //     var range = document.createRange(); //创建一个range
+    //     window.getSelection().removeAllRanges(); //清楚页面中已有的selection
+    //     range.selectNode(copyDOM); // 选中需要复制的节点
+    //     window.getSelection().addRange(range); // 执行选中元素
+    //     var successful = document.execCommand('copy'); // 执行 copy 操作
+    //     if(successful){
+    //         alert('复制成功！');
+    //     }else{
+    //         alert('复制失败，请手动复制！');
+    //     }
+    //     // 移除选中的元素
+    //     window.getSelection().removeAllRanges();
+    // };
+
     return (
         <div>
             <CodeMirror

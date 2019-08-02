@@ -26,10 +26,9 @@ const Example04 = () => {
 
 // ref: https://facebook.github.io/react-native/docs/textinput
 const TextInput = ({ value, onChangeText }) => (
-
-  <input onChange={e => onChangeText(e.target.value)}
-         type="text"
-         value={value} />
+    <input onChange={e => onChangeText(e.target.value)}
+           type="text"
+           value={value} />
 );
 TextInput.propTypes = {
     value: PropTypes.string,

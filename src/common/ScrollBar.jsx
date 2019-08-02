@@ -154,7 +154,7 @@ class ScrollBar extends Component {
     }
     destroy() {
         this.delegateMethod('destroy');
-        this.setState({instance: null});
+        // this.setState({instance: null});
     }
     ext(...args) {
         return this.delegateMethod('ext', ...args);
