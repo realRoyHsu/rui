@@ -4,16 +4,6 @@ import OverlayScrollbars from 'overlayscrollbars';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 class ScrollBar extends Component {
-    static defaultOptions() {
-        return OverlayScrollbars.defaultOptions();
-    }
-    static globals() {
-        return OverlayScrollbars.globals();
-    }
-    static extension(...args) {
-        return OverlayScrollbars.extension(...args);
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -102,6 +92,15 @@ class ScrollBar extends Component {
     }
     removeExt(...args) {
         this.delegateMethod('removeExt', ...args);
+    }
+    defaultOptions() {
+        return OverlayScrollbars.defaultOptions();
+    }
+    globals() {
+        return OverlayScrollbars.globals();
+    }
+    extension(...args) {
+        return OverlayScrollbars.extension(...args);
     }
 
     render() {

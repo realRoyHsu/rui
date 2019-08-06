@@ -9,7 +9,8 @@
     "scripts": {
         "bootstrap": "yarn && lerna bootstrap",
         "start": "node scripts/start.js",
-        "build": "node scripts/build.js",
+        "build:react": "node scripts/build.js",
+        "build": "tsc",
         "build:dll": "webpack --config ./config/webpack.dll.config.js",
         "test": "node scripts/test.js",
         "compile": "rollup -c rollup/rollup.config.js",
@@ -49,6 +50,10 @@
         "jest": "23.6.0",
         "jest-pnp-resolver": "1.0.1",
         "jest-resolve": "23.6.0",
+        "jquery": "^3.4.1",
+        "lodash": "^4.17.15",
+        "lodash.debounce": "^4.0.8",
+        "lodash.isequal": "^4.5.0",
         "mini-css-extract-plugin": "0.4.3",
         "optimize-css-assets-webpack-plugin": "5.0.1",
         "overlayscrollbars": "^1.8.0",
@@ -152,6 +157,7 @@
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-postcss": "^2.0.3",
         "rollup-plugin-scss": "^1.0.1",
+        "typescript": "^3.5.3",
         "webpack-cli": "^3.3.6",
         "webpack-merge": "^4.2.1"
     },

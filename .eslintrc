@@ -89,7 +89,7 @@
         "react/display-name": 0, //防止在React组件定义中丢失displayName
         "react/jsx-closing-bracket-location": 0, //有多行属性的话, 新建一行关闭标签,为JSX语法使用下列的对齐方式
         "react/jsx-indent-props": [2, "first"], //验证JSX中的props缩进
-        "react/jsx-indent": 0,
+        // "react/jsx-indent": 0,
         "react/jsx-key": 2, //在数组或迭代器中验证JSX具有key属性
         "react/jsx-max-props-per-line": [1, {"maximum": 1}], // 限制JSX中单行上的props的最大数量
         "react/jsx-no-bind": 0, //JSX中不允许使用箭头函数和bind

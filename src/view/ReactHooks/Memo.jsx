@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
 
-// function WithoutMemo() {
+// export default function WithoutMemo() {
 //     const [count, setCount] = useState(1);
 //     const [val, setValue] = useState('');
 //     function expensive() {
 //         console.log('compute');
 //         let sum = 0;
-//         for (let i = 0; i < count * 100; i++) {
+//         for (let i = 0; i < count * 10; i++) {
 //             sum += i;
 //         }
 //         return sum;

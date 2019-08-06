@@ -5,6 +5,10 @@ import InputTimeOut from './ReactHooks/InputTimeOut.jsx';
 import FetchData from './ReactHooks/FetchData.jsx';
 import FetchDatauseApi from './ReactHooks/FetchDatauseApi.jsx';
 import FetchDatauseReducer from './ReactHooks/FetchDatauseReducer.jsx';
+import Memo from './ReactHooks/Memo.jsx';
+import UseCallback from './ReactHooks/UseCallback.jsx';
+import ReducerTodo from './ReactHooks/ReducerTodo.jsx';
+import useImperativeHandle from './ReactHooks/useImperativeHandle.jsx';
 import UserWages from './Redux/UserWages';
 import UserWagesReducer from './Redux/UserWagesReducer';
 import TextInputReducer from './Redux/TextInputReducer';
@@ -24,4 +28,8 @@ export default {
     FetchDatauseReducer,
     StateCounterV1,
     ReducerCounter,
+    Memo,
+    UseCallback,
+    ReducerTodo,
+    useImperativeHandle,
 };

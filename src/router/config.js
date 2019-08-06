@@ -19,6 +19,10 @@ export default {
                 { key: '/main/ReactHooks/FetchData', title: 'FetchData', component: 'FetchData' },
                 { key: '/main/ReactHooks/FetchDatauseApi', title: 'FetchDatauseApi', component: 'FetchDatauseApi' },
                 { key: '/main/ReactHooks/FetchDatauseReducer', title: 'FetchDatauseReducer', component: 'FetchDatauseReducer' },
+                { key: '/main/ReactHooks/Memo', title: 'Memo', component: 'Memo' },
+                { key: '/main/ReactHooks/UseCallback', title: 'UseCallback', component: 'UseCallback' },
+                { key: '/main/ReactHooks/ReducerTodo', title: 'ReducerTodo', component: 'ReducerTodo' },
+                { key: '/main/ReactHooks/useImperativeHandle', title: 'useImperativeHandle', component: 'useImperativeHandle' },
             ],
         },
         {
