@@ -4,17 +4,9 @@ import OverlayScrollbars from 'overlayscrollbars';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 class ScrollBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            instance: null,
-        };
-    }
-
     componentDidMount() {
         this.init();
     }
-
     componentWillUnmount() {
         this.destroy();
     }
@@ -35,7 +27,7 @@ class ScrollBar extends Component {
             textarea,
             callbacks,
         } = this.props;
-        this.setState({ instance : OverlayScrollbars(this.ScrollbarRef, {
+        this.scrollBars = OverlayScrollbars(this.ScrollbarRef, {
             className,
             resize,
             sizeAutoCapable,
@@ -49,49 +41,45 @@ class ScrollBar extends Component {
             scrollbars,
             textarea,
             callbacks,
-        })});
+        });
     }
 
-    delegateMethod(name, ...args) {
-        if (!this.state.instance) {
-            this.init();
-        }
-        return this.state.instance[name](...args);
+    getScrollBars(name, ...args) {
+        return this.scrollBars[name](...args);
     }
 
     options(...args) {
-        return this.delegateMethod('options', ...args);
+        return this.getScrollBars('options', ...args);
     }
     update() {
-        this.delegateMethod('update');
+        this.getScrollBars('update');
     }
     sleep() {
-        this.delegateMethod('sleep');
+        this.getScrollBars('sleep');
     }
     scroll(...args) {
-        return this.delegateMethod('scroll', ...args);
+        return this.getScrollBars('scroll', ...args);
     }
     scrollStop() {
-        this.delegateMethod('scrollStop');
+        this.getScrollBars('scrollStop');
     }
     getElements(...args) {
-        return this.delegateMethod('getElements', ...args);
+        return this.getScrollBars('getElements', ...args);
     }
     getState(...args) {
-        return this.delegateMethod('getState', ...args);
+        return this.getScrollBars('getState', ...args);
     }
     destroy() {
-        this.delegateMethod('destroy');
-        this.setState({instance: null});
+        this.getScrollBars('destroy');
     }
     ext(...args) {
-        return this.delegateMethod('ext', ...args);
+        return this.getScrollBars('ext', ...args);
     }
     addExt(...args) {
-        return this.delegateMethod('addExt', ...args);
+        return this.getScrollBars('addExt', ...args);
     }
     removeExt(...args) {
-        this.delegateMethod('removeExt', ...args);
+        this.getScrollBars('removeExt', ...args);
     }
     defaultOptions() {
         return OverlayScrollbars.defaultOptions();
@@ -149,8 +137,8 @@ ScrollBar.defaultProps = {
     sizeAutoCapable: true,
     clipAlways: true,
     normalizeRTL: true,
-    paddingAbsolute: true,
-    autoUpdate: true,
+    paddingAbsolute: false,
+    autoUpdate: null,
     autoUpdateInterval: 33,
     nativeScrollbarsOverlaid: {
         showNativeScrollbars: false,

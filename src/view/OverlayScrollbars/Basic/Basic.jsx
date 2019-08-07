@@ -1,44 +1,34 @@
 import React, { useRef, useEffect, useState } from 'react';
 // import ScrollBar from 'react-overlayscrollbars';
 import ScrollBar from './../../../common/ScrollBar';
-import { Button } from 'antd';
+import { Button, Alert } from 'antd';
 import $ from 'jquery';
-
 import CodeMirror from '@/common/CodeMirror/ReactCodeMirror.jsx';
+
+import {parseJson} from '@/utils';
 
 import './basic.scss';
 
+// scrollbar配置
+let scrollOptions = {
+    className:'os-theme-dark',
+    overflowBehavior:{ x: 'hidden' },
+    paddingAbsolute:true,
+    resize:'none',
+    scrollbars:{ autoHide: 'l' },
+    sizeAutoCapable:true,
+    style:{ background: 'white' },
+};
+let scrollOption = '{\n\tclassName     : "os-theme-dark",\n\tresize       : "both",\n\tsizeAutoCapable : true,\n\tpaddingAbsolute : true,\n\tscrollbars : {\n\t\tclickScrolling : true\n\t}\n}';
+console.log(parseJson(scrollOption,'scroll'),$);
 export default function Basic() {
     const [instance, setInstance] = useState(null);
     const [className, setClassName] = useState('codemirror-host');
-    const [value, setValue] = useState('{\n\tclassName     : "os-theme-dark",\n\tresize       : "none",\n\tsizeAutoCapable : true,\n\tpaddingAbsolute : true,\n\tscrollbars : {\n\t\tclickScrolling : true\n\t}\n}');
-    const [scrollOption, setScrollOption] = useState({
-        className:'os-theme-dark',
-        overflowBehavior:{ x: 'hidden' },
-        paddingAbsolute:true,
-        resize:'none',
-        scrollbars:{ autoHide: 'l' },
-        sizeAutoCapable:true,
-        style:{ background: 'white' },
-    });
-    const ScrollBarBasic = useRef(null);
-    const CodeMirrorBox = useRef(null);
-
-    // const copy = () => {
-    //     var copyDOM = document.getElementById('xxx'); //需要复制文字的节点
-    //     var range = document.createRange(); //创建一个range
-    //     window.getSelection().removeAllRanges(); //清楚页面中已有的selection
-    //     range.selectNode(copyDOM); // 选中需要复制的节点
-    //     window.getSelection().addRange(range); // 执行选中元素
-    //     var successful = document.execCommand('copy'); // 执行 copy 操作
-    //     if(successful){
-    //         alert('复制成功！');
-    //     }else{
-    //         alert('复制失败，请手动复制！');
-    //     }
-    //     // 移除选中的元素
-    //     window.getSelection().removeAllRanges();
-    // };
+    const [value, setValue] = useState(scrollOption);
+    const [error, setError] = useState('');
+    const [warnDescription, setwarnDescription] = useState('For visibility purposes the scrollbar-track-elements have a reddish background-color.This behavior is special and only for this demo.');
+    const ScrollBarBasic = useRef();
+    const CodeMirrorBox = useRef();
 
     const onChange = () => {
         let changeTimeoutId;
@@ -46,28 +36,45 @@ export default function Basic() {
             clearTimeout(changeTimeoutId);
         }
         setValue(instance.getValue());
-        // eslint-disable-next-line
-        eval(`setScrollOption($.extend(true, {}, ScrollBarBasic.current.defaultOptions(),${instance.getValue()}))`);
-        console.log('-',scrollOption,setScrollOption,$);
         changeTimeoutId = setTimeout(function() {
             setClassName('codemirror-host');
+            var oldWarn = console.warn;
+            // 初始化
+            setError('');
+            setwarnDescription('For visibility purposes the scrollbar-track-elements have a reddish background-color.This behavior is special and only for this demo.');
+            console.warn = function(msg) {
+                setwarnDescription(msg);
+            };
             try {
-                var json = JSON.parse(instance.getValue());
-                console.log(json);
+                var option = {};
+                // eslint-disable-next-line
+                eval(`option = $.extend(true, {}, ${instance.getValue()})`);
+                ScrollBarBasic.current.options(option);
+                console.warn = oldWarn;
             } catch (error) {
                 setClassName('codemirror-host codemirror-error');
-                console.log(error);
+                setError(`${error}`);
             }
         }, 500);
     };
 
+    // 实例化
     useEffect(() => {
-        console.log(CodeMirrorBox.current.getCodeMirror(),'useEffect');
         setInstance(CodeMirrorBox.current.getCodeMirror());
-
     }, []);
+
+    // 给scrollbar 赋值
+    useEffect(()=>{
+        if(ScrollBarBasic.current && instance) {
+            var option = {};
+            // eslint-disable-next-line
+            eval(`option = $.extend(true, {}, ${instance.getValue()})`);
+            console.log(option,'--', ScrollBarBasic.current.defaultOptions());
+            ScrollBarBasic.current.options(option);
+        }
+    },[instance]);
+
     if(ScrollBarBasic.current){
-        console.log(ScrollBarBasic,'ScrollBarBasic');
         ScrollBarBasic.current.extension('myBasicExtension', function(defaultOptions, framework) {
             var osInstance = this;
             var extension = {};
@@ -114,6 +121,7 @@ export default function Basic() {
                     tabSize: 4,
                     indentWithTabs: false,
                     electricChars: true,
+                    lineNumbers: true,
                 }}
                 preserveScrollPosition={{
                     top: 20,
@@ -122,88 +130,104 @@ export default function Basic() {
                 ref={CodeMirrorBox}
                 value={value}
             />
-            {Array(1)
+            {/* {Array(1)
                 .fill(0)
                 .map((v, i) => (
                     <div key={i}>v</div>
-                ))}
-            <ScrollBar id="roy_basic"
-                       ref={ScrollBarBasic}
-                       {...scrollOption}>
-                <div style={{ whiteSpace: 'nowrap', wordBreak: 'break-all' }}>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod
-                    <br />
-                    >tempor invidunt ut labore et dolore magna aliquyam erat,
-                    sed diam voluptua.
-                    <br />
-                    At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren,
-                    <br />
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    <br />
-                    <br />
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod
-                    <br />
-                    tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                    diam voluptua.
-                    <br />
-                    At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren,
-                    <br />
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    <br />
-                    <br />
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod
-                    <br />
-                    tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                    diam voluptua.
-                    <br />
-                    At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren,
-                    <br />
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    <br />
-                    <br />
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod
-                    <br />
-                    tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                    diam voluptua.
-                    <br />
-                    At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren,
-                    <br />
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    <br />
-                    <br />
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod
-                    <br />
-                    tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                    diam voluptua.
-                    <br />
-                </div>
-            </ScrollBar>
-            <Button
-                icon="caret-right"
-                onClick={() =>
-                    ScrollBarBasic.current.addExt('myBasicExtension')
-                }
-                type="primary"
-            >
-                Primary
-            </Button>
-            <Button
-                icon="caret-left"
-                onClick={() =>
-                    ScrollBarBasic.current.removeExt('myBasicExtension')
-                }
-            >
-                Default
-            </Button>
+                ))} */}
+            <p style={{marginTop:'20px',fontWeight: 600 }}>Warning:</p>
+            <Alert description={warnDescription}
+                   message="Warning"
+                   showIcon
+                   style={{color: '#FF9600', fontWeight: 600}}
+                   type="warning"
+                />
+
+            <p style={{marginTop:'20px',fontWeight: 600}}>Result:</p>
+            {
+                !error ? (
+                    <div>
+                        <ScrollBar id="roy_basic"
+                                   ref={ScrollBarBasic}
+                                   { ...scrollOptions }>
+                            <div style={{ whiteSpace: 'nowrap', wordBreak: 'break-all' }}>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                diam nonumy eirmod
+                                <br />
+                                >tempor invidunt ut labore et dolore magna aliquyam erat,
+                                sed diam voluptua.
+                                <br />
+                                At vero eos et accusam et justo duo dolores et ea rebum.
+                                Stet clita kasd gubergren,
+                                <br />
+                                no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                <br />
+                                <br />
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                diam nonumy eirmod
+                                <br />
+                                tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                diam voluptua.
+                                <br />
+                                At vero eos et accusam et justo duo dolores et ea rebum.
+                                Stet clita kasd gubergren,
+                                <br />
+                                no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                <br />
+                                <br />
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                diam nonumy eirmod
+                                <br />
+                                tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                diam voluptua.
+                                <br />
+                                At vero eos et accusam et justo duo dolores et ea rebum.
+                                Stet clita kasd gubergren,
+                                <br />
+                                no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                <br />
+                                <br />
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                diam nonumy eirmod
+                                <br />
+                                tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                diam voluptua.
+                                <br />
+                                At vero eos et accusam et justo duo dolores et ea rebum.
+                                Stet clita kasd gubergren,
+                                <br />
+                                no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                <br />
+                                <br />
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                diam nonumy eirmod
+                                <br />
+                                tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                diam voluptua.
+                                <br />
+                            </div>
+                        </ScrollBar>
+                        <Button
+                            icon="caret-right"
+                            onClick={() =>
+                                ScrollBarBasic.current.addExt('myBasicExtension')
+                            }
+                            type="primary" >
+                            Primary
+                        </Button>
+                        <Button
+                            icon="caret-left"
+                            onClick={() =>
+                                ScrollBarBasic.current.removeExt('myBasicExtension')
+                            }>
+                            Default
+                        </Button>
+                    </div>
+                ) : (
+                    <pre className="error">{error}</pre>
+                )
+            }
+
         </div>
     );
 }

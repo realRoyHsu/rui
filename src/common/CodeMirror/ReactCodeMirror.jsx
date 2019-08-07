@@ -25,21 +25,14 @@ import 'codemirror/mode/meta.js';
 import 'codemirror/addon/mode/loadmode.js';
 
 const className = require('classnames');
-const debounce = require('lodash.debounce');
 const isEqual = require('lodash.isequal');
 
-function normalizeLineEndings (str) {
-	if (!str) return str;
-	return str.replace(/\r\n|\r/g, '\n');
-}
 
 export default class CodeEditMirror extends Component {
     state = {
         isFocused: false,
     }
-	componentWillMount () {
-		this.componentWillReceiveProps = debounce(this.componentWillReceiveProps, 0);
-	}
+
 	componentDidMount () {
 		this.codeMirror = CodeMirror.fromTextArea(this.textareaNode, this.props.options);
 		this.codeMirror.on('change', this.codemirrorValueChanged);
@@ -50,24 +43,6 @@ export default class CodeEditMirror extends Component {
 		this.codeMirror.setValue(this.props.defaultValue || this.props.value || '');
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.codeMirror && nextProps.value !== undefined && nextProps.value !== this.props.value && normalizeLineEndings(this.codeMirror.getValue()) !== normalizeLineEndings(nextProps.value)) {
-			if (this.props.preserveScrollPosition) {
-				var prevScrollPosition = this.codeMirror.getScrollInfo();
-				this.codeMirror.setValue(nextProps.value);
-				this.codeMirror.scrollTo(prevScrollPosition.left, prevScrollPosition.top);
-			} else {
-				this.codeMirror.setValue(nextProps.value);
-			}
-		}
-		if (typeof nextProps.options === 'object') {
-			for (let optionName in nextProps.options) {
-				if (nextProps.options.hasOwnProperty(optionName)) {
-					this.setOptionIfChanged(optionName, nextProps.options[optionName]);
-				}
-			}
-		}
-    }
     componentWillUnmount () {
 		// is there a lighter-weight way to remove the cm instance?
 		if (this.codeMirror) {
