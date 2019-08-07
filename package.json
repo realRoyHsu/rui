@@ -9,8 +9,7 @@
     "scripts": {
         "bootstrap": "yarn && lerna bootstrap",
         "start": "node scripts/start.js",
-        "build:react": "node scripts/build.js",
-        "build": "tsc",
+        "build": "node scripts/build.js",
         "build:dll": "webpack --config ./config/webpack.dll.config.js",
         "test": "node scripts/test.js",
         "compile": "rollup -c rollup/rollup.config.js",
