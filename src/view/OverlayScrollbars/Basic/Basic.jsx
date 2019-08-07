@@ -9,6 +9,7 @@ import './basic.scss';
 export default function Basic() {
     const ScrollBarBasic = useRef(null);
     const CodeMirrorBox = useRef(null);
+    CodeMirrorBox.change();
     return (
         <div>
             <CodeMirror
