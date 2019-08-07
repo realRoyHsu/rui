@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-// import ScrollBar from 'react-overlayscrollbars';
-import ScrollBar from './../../../common/ScrollBar';
+import ScrollBar from 'react-overlayscrollbars';
+// import ScrollBar from './../../../common/ScrollBar';
 import { Button, Alert } from 'antd';
 import $ from 'jquery';
 import CodeMirror from '@/common/CodeMirror/ReactCodeMirror.jsx';

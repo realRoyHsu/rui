@@ -2208,7 +2208,7 @@ function (_Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.destroy();
+      this.scrollBars = null;
     }
   }, {
     key: "init",

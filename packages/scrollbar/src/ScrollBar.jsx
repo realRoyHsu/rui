@@ -8,7 +8,7 @@ class ScrollBar extends Component {
         this.init();
     }
     componentWillUnmount() {
-        this.destroy();
+        this.scrollBars = null;
     }
 
     init () {
