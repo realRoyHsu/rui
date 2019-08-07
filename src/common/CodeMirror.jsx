@@ -7,35 +7,33 @@ function CodeEditMirror(props) {
     const CodeMirrorRef = useRef(null);
     const Instance = useCodeMirrorInstance(props, CodeMirrorRef.current);
 
-    CodeEditMirror.change = function() {
-        if (Instance) {
-            Instance.on('change', () => {
-                let changeTimeoutId;
-                // if(changeTimeoutId !== undefined) {
-                //     clearTimeout(changeTimeoutId);
-                // }
-                changeTimeoutId = setTimeout(function() {
-                    CodeMirrorRef.current.className = 'codemirror-host';
-                    try {
-                        var json = JSON.parse(Instance.getValue());
-                        console.log(json);
-                    } catch (error) {
-                        CodeMirrorRef.current.className =
-                            'codemirror-host codemirror-error';
-                        console.log(error);
-                    }
-                }, 500);
-                console.log(changeTimeoutId);
-            });
-        }
+
+    const change = () => {
+        let changeTimeoutId;
+        // if(changeTimeoutId !== undefined) {
+        //     clearTimeout(changeTimeoutId);
+        // }
+        changeTimeoutId = setTimeout(function() {
+            CodeMirrorRef.current.className = 'codemirror-host';
+            try {
+                var json = JSON.parse(Instance.getValue());
+                console.log(json);
+            } catch (error) {
+                CodeMirrorRef.current.className =
+                    'codemirror-host codemirror-error';
+                console.log(error);
+            }
+        }, 500);
+        console.log(changeTimeoutId);
     };
-    return (
-        <div
-            className="codemirror-host"
-            id="codemirrorRef"
-            ref={CodeMirrorRef}
-        ></div>
-    );
+
+        if (Instance) {
+            Instance.on('change', change);
+        }
+
+
+    return <div className="codemirror-host"
+                ref={CodeMirrorRef}></div>;
 }
 
 CodeEditMirror.propTypes = {

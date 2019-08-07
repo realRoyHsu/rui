@@ -4,14 +4,86 @@ import OverlayScrollbars from 'overlayscrollbars';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 
 class ScrollBar extends Component {
-    componentDidMount() {
-        this.init();
-    }
-    componentWillUnmount() {
-        this.scrollBars = null;
+
+
+    // initialization
+    constructor(props) {
+        console.log('----->initialization-----');
+        super(props);
+        this.state = {
+            instance: null,
+        };
+        console.log('initialization<-----');
     }
 
-    init () {
+
+    // Mounting: 此阶段分为componentWillMount，render，componentDidMount三个时期。
+    //（componentWillMount，componentWillReceiveProps，componentWillUpdate）都被getDerivedStateFromProps替代。
+    static getDerivedStateFromProps(props, state) {
+        console.log('----->Mounting');
+        console.log('getDerivedStateFromProps');
+        console.log(props,state);
+        return null;
+    }
+    // componentWillMount() {
+    //     console.log('componentWillMount');
+    // }
+    componentDidMount() {
+        // ajax
+        this.init();
+        console.log('componentDidMount');
+        console.log('Mounting<-----');
+    }
+
+    // update: 此阶段分为componentWillReceiveProps，shouldComponentUpdate，componentWillUpdate，render，componentDidUpdate
+    // componentWillReceiveProps(nextProps){
+    //     console.log('----->update');
+    //     console.log('componentWillReceiveProps');
+    //     console.log(nextProps);
+
+    // }
+
+    shouldComponentUpdate(nextProps , nextState){
+        console.log('shouldComponentUpdate');
+        console.log(nextProps, nextState);
+        return true;
+    }
+
+    // componentWillUpdate(nextProps, nextState){
+    //     console.log('componentWillUpdate');
+    //     console.log(nextProps, nextState);
+    // }
+
+    // 被调用于render之后，可以读取但无法使用DOM的时候。它使您的组件可以在可能更改之前从DOM捕获一些信息（例如滚动位置）
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('getSnapshotBeforeUpdate');
+        console.log(prevProps, prevState);
+        //我们是否要添加新的 items 到列表?
+        // 捕捉滚动位置，以便我们可以稍后调整滚动.
+        // if (prevProps.list.length < this.props.list.length) {
+        //   const list = this.listRef.current;
+        //   return list.scrollHeight - list.scrollTop;
+        // }
+        return null;
+      }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('componentDidUpdate');
+        console.log(prevProps, prevState, snapshot);
+        console.log('update<-----');
+        // let sss = ;
+        // console.log(sss,'--sss');
+    }
+
+    // Unmount
+    componentWillUnmount() {
+        console.log('----->Unmount');
+        this.destroy();
+        console.log('Unmount<-----');
+    }
+
+    // 创建实例
+    init = () => {
         const {
             className,
             resize,
@@ -27,7 +99,8 @@ class ScrollBar extends Component {
             textarea,
             callbacks,
         } = this.props;
-        this.scrollBars = OverlayScrollbars(this.ScrollbarRef, {
+        console.log(resize,'resize');
+        this.setState({ instance : OverlayScrollbars(this.scrollbar, {
             className,
             resize,
             sizeAutoCapable,
@@ -41,45 +114,49 @@ class ScrollBar extends Component {
             scrollbars,
             textarea,
             callbacks,
-        });
+        })});
     }
 
-    getScrollBars(name, ...args) {
-        return this.scrollBars[name](...args);
+    delegateMethod(name, ...args) {
+        if (!this.state.instance) {
+            this.init();
+        }
+        return this.state.instance[name](...args);
     }
 
     options(...args) {
-        return this.getScrollBars('options', ...args);
+        return this.delegateMethod('options', ...args);
     }
     update() {
-        this.getScrollBars('update');
+        this.delegateMethod('update');
     }
     sleep() {
-        this.getScrollBars('sleep');
+        this.delegateMethod('sleep');
     }
     scroll(...args) {
-        return this.getScrollBars('scroll', ...args);
+        return this.delegateMethod('scroll', ...args);
     }
     scrollStop() {
-        this.getScrollBars('scrollStop');
+        this.delegateMethod('scrollStop');
     }
     getElements(...args) {
-        return this.getScrollBars('getElements', ...args);
+        return this.delegateMethod('getElements', ...args);
     }
     getState(...args) {
-        return this.getScrollBars('getState', ...args);
+        return this.delegateMethod('getState', ...args);
     }
     destroy() {
-        this.getScrollBars('destroy');
+        this.delegateMethod('destroy');
+        // this.setState({instance: null});
     }
     ext(...args) {
-        return this.getScrollBars('ext', ...args);
+        return this.delegateMethod('ext', ...args);
     }
     addExt(...args) {
-        return this.getScrollBars('addExt', ...args);
+        return this.delegateMethod('addExt', ...args);
     }
     removeExt(...args) {
-        this.getScrollBars('removeExt', ...args);
+        this.delegateMethod('removeExt', ...args);
     }
     defaultOptions() {
         return OverlayScrollbars.defaultOptions();
@@ -92,9 +169,10 @@ class ScrollBar extends Component {
     }
 
     render() {
+        console.log('render');
         return (
             <div id={this.props.id}
-                 ref={el => this.ScrollbarRef = el}
+                 ref={el => this.scrollbar = el}
                  style={{...this.props.style}}>
                 {/* eslint-disable-next-line */}
                 {this.props.children}
@@ -137,8 +215,8 @@ ScrollBar.defaultProps = {
     sizeAutoCapable: true,
     clipAlways: true,
     normalizeRTL: true,
-    paddingAbsolute: false,
-    autoUpdate: null,
+    paddingAbsolute: true,
+    autoUpdate: true,
     autoUpdateInterval: 33,
     nativeScrollbarsOverlaid: {
         showNativeScrollbars: false,

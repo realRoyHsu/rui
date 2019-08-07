@@ -6,7 +6,7 @@
     "editor.wordWrap": "off",
     "editor.tabSize": 4,
     "editor.fontFamily": "Consolas, 'Courier New', monospace",
-    "editor.formatOnSave": true, //每次保存自动格式化
+    "editor.formatOnSave": false, //每次保存自动格式化
     "eslint.autoFixOnSave": true, // 每次保存的时候将代码按eslint格式进行修复
     // The default end of line character.
     //  - \n: LF

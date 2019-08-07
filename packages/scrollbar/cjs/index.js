@@ -2198,33 +2198,10 @@ var ScrollBar =
 function (_Component) {
   _inherits(ScrollBar, _Component);
 
-  _createClass(ScrollBar, null, [{
-    key: "defaultOptions",
-    value: function defaultOptions() {
-      return OverlayScrollbars.defaultOptions();
-    }
-  }, {
-    key: "globals",
-    value: function globals() {
-      return OverlayScrollbars.globals();
-    }
-  }, {
-    key: "extension",
-    value: function extension() {
-      return OverlayScrollbars.extension.apply(OverlayScrollbars, arguments);
-    }
-  }]);
-
-  function ScrollBar(props) {
-    var _this;
-
+  function ScrollBar() {
     _classCallCheck(this, ScrollBar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ScrollBar).call(this, props));
-    _this.state = {
-      instance: null
-    };
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(ScrollBar).apply(this, arguments));
   }
 
   _createClass(ScrollBar, [{
@@ -2235,7 +2212,7 @@ function (_Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.destroy();
+      this.scrollBars = null;
     }
   }, {
     key: "init",
@@ -2254,38 +2231,32 @@ function (_Component) {
           scrollbars = _this$props.scrollbars,
           textarea = _this$props.textarea,
           callbacks = _this$props.callbacks;
-      this.setState({
-        instance: OverlayScrollbars(this.ScrollbarRef, {
-          className: className,
-          resize: resize,
-          sizeAutoCapable: sizeAutoCapable,
-          clipAlways: clipAlways,
-          normalizeRTL: normalizeRTL,
-          paddingAbsolute: paddingAbsolute,
-          autoUpdate: autoUpdate,
-          autoUpdateInterval: autoUpdateInterval,
-          nativeScrollbarsOverlaid: nativeScrollbarsOverlaid,
-          overflowBehavior: overflowBehavior,
-          scrollbars: scrollbars,
-          textarea: textarea,
-          callbacks: callbacks
-        })
+      this.scrollBars = OverlayScrollbars(this.ScrollbarRef, {
+        className: className,
+        resize: resize,
+        sizeAutoCapable: sizeAutoCapable,
+        clipAlways: clipAlways,
+        normalizeRTL: normalizeRTL,
+        paddingAbsolute: paddingAbsolute,
+        autoUpdate: autoUpdate,
+        autoUpdateInterval: autoUpdateInterval,
+        nativeScrollbarsOverlaid: nativeScrollbarsOverlaid,
+        overflowBehavior: overflowBehavior,
+        scrollbars: scrollbars,
+        textarea: textarea,
+        callbacks: callbacks
       });
     }
   }, {
-    key: "delegateMethod",
-    value: function delegateMethod(name) {
-      var _this$state$instance;
-
-      if (!this.state.instance) {
-        this.init();
-      }
+    key: "getScrollBars",
+    value: function getScrollBars(name) {
+      var _this$scrollBars;
 
       for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
       }
 
-      return (_this$state$instance = this.state.instance)[name].apply(_this$state$instance, args);
+      return (_this$scrollBars = this.scrollBars)[name].apply(_this$scrollBars, args);
     }
   }, {
     key: "options",
@@ -2294,17 +2265,17 @@ function (_Component) {
         args[_key2] = arguments[_key2];
       }
 
-      return this.delegateMethod.apply(this, ['options'].concat(args));
+      return this.getScrollBars.apply(this, ['options'].concat(args));
     }
   }, {
     key: "update",
     value: function update() {
-      this.delegateMethod('update');
+      this.getScrollBars('update');
     }
   }, {
     key: "sleep",
     value: function sleep() {
-      this.delegateMethod('sleep');
+      this.getScrollBars('sleep');
     }
   }, {
     key: "scroll",
@@ -2313,12 +2284,12 @@ function (_Component) {
         args[_key3] = arguments[_key3];
       }
 
-      return this.delegateMethod.apply(this, ['scroll'].concat(args));
+      return this.getScrollBars.apply(this, ['scroll'].concat(args));
     }
   }, {
     key: "scrollStop",
     value: function scrollStop() {
-      this.delegateMethod('scrollStop');
+      this.getScrollBars('scrollStop');
     }
   }, {
     key: "getElements",
@@ -2327,7 +2298,7 @@ function (_Component) {
         args[_key4] = arguments[_key4];
       }
 
-      return this.delegateMethod.apply(this, ['getElements'].concat(args));
+      return this.getScrollBars.apply(this, ['getElements'].concat(args));
     }
   }, {
     key: "getState",
@@ -2336,15 +2307,12 @@ function (_Component) {
         args[_key5] = arguments[_key5];
       }
 
-      return this.delegateMethod.apply(this, ['getState'].concat(args));
+      return this.getScrollBars.apply(this, ['getState'].concat(args));
     }
   }, {
     key: "destroy",
     value: function destroy() {
-      this.delegateMethod('destroy');
-      this.setState({
-        instance: null
-      });
+      this.getScrollBars('destroy');
     }
   }, {
     key: "ext",
@@ -2353,7 +2321,7 @@ function (_Component) {
         args[_key6] = arguments[_key6];
       }
 
-      return this.delegateMethod.apply(this, ['ext'].concat(args));
+      return this.getScrollBars.apply(this, ['ext'].concat(args));
     }
   }, {
     key: "addExt",
@@ -2362,7 +2330,7 @@ function (_Component) {
         args[_key7] = arguments[_key7];
       }
 
-      return this.delegateMethod.apply(this, ['addExt'].concat(args));
+      return this.getScrollBars.apply(this, ['addExt'].concat(args));
     }
   }, {
     key: "removeExt",
@@ -2371,17 +2339,32 @@ function (_Component) {
         args[_key8] = arguments[_key8];
       }
 
-      this.delegateMethod.apply(this, ['removeExt'].concat(args));
+      this.getScrollBars.apply(this, ['removeExt'].concat(args));
+    }
+  }, {
+    key: "defaultOptions",
+    value: function defaultOptions() {
+      return OverlayScrollbars.defaultOptions();
+    }
+  }, {
+    key: "globals",
+    value: function globals() {
+      return OverlayScrollbars.globals();
+    }
+  }, {
+    key: "extension",
+    value: function extension() {
+      return OverlayScrollbars.extension.apply(OverlayScrollbars, arguments);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       return react.createElement("div", {
         id: this.props.id,
         ref: function ref(el) {
-          return _this2.ScrollbarRef = el;
+          return _this.ScrollbarRef = el;
         },
         style: _objectSpread2({}, this.props.style)
       }, this.props.children);
@@ -2416,8 +2399,8 @@ ScrollBar.defaultProps = {
   sizeAutoCapable: true,
   clipAlways: true,
   normalizeRTL: true,
-  paddingAbsolute: true,
-  autoUpdate: true,
+  paddingAbsolute: false,
+  autoUpdate: null,
   autoUpdateInterval: 33,
   nativeScrollbarsOverlaid: {
     showNativeScrollbars: false,

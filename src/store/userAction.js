@@ -16,3 +16,15 @@ export const sexAction = () => (dispatch) =>{
 		});
 	});
 };
+
+export const handleIncrease = ()=>{
+	return {
+		type: type.INCREASE,
+	};
+};
+
+export const handleDecrease = ()=>{
+	return {
+		type: type.DECREASE,
+	};
+};

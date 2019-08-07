@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import routes from '@/router/config.js';
 import ScrollBar from 'react-overlayscrollbars';
@@ -6,7 +7,7 @@ import ScrollBar from 'react-overlayscrollbars';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-class TopBar extends Component {
+class SiderBar extends Component {
     state = {
         collapsed: false,
     };
@@ -39,14 +40,15 @@ class TopBar extends Component {
                                         } >
                                         {
                                             menu.subs.map(sub=> (
-                                                <Menu.Item key={sub.key}>{sub.title}</Menu.Item>
+                                                <Menu.Item key={sub.key}><Link to={sub.key}>{sub.title}</Link></Menu.Item>
                                             ))
                                         }
                                     </SubMenu>
                                 ) : (
                                     <Menu.Item key={menu.key}>
                                         <Icon type={menu.icon} />
-                                        <span>{menu.title}</span>
+                                        <span><Link className="menu-link"
+                                                    to={menu.key}>{menu.title}</Link></span>
                                     </Menu.Item>
                                 );
                             })
@@ -58,4 +60,4 @@ class TopBar extends Component {
     }
 }
 
-export default TopBar;
+export default SiderBar;
