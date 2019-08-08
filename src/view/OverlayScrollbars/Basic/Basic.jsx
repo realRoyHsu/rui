@@ -22,6 +22,11 @@ let scrollOptions = {
 let scrollOption = '{\n\tclassName     : "os-theme-dark",\n\tresize       : "both",\n\tsizeAutoCapable : true,\n\tpaddingAbsolute : true,\n\tscrollbars : {\n\t\tclickScrolling : true\n\t}\n}';
 console.log(parseJson(scrollOption,'scroll'),$);
 export default function Basic() {
+<<<<<<< HEAD
+    const ScrollBarBasic = useRef(null);
+    const CodeMirrorBox = useRef(null);
+    CodeMirrorBox.change();
+=======
     const [instance, setInstance] = useState(null);
     const [className, setClassName] = useState('codemirror-host');
     const [value, setValue] = useState(scrollOption);
@@ -109,6 +114,7 @@ export default function Basic() {
     // }
 
 
+>>>>>>> 3651a8b41022676382b804f811fb91554333a7ac
     return (
         <div>
             <CodeMirror
