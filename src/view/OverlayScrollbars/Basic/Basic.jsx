@@ -69,42 +69,44 @@ export default function Basic() {
             var option = {};
             // eslint-disable-next-line
             eval(`option = $.extend(true, {}, ${instance.getValue()})`);
+            debugger;
             console.log(option,'--', ScrollBarBasic.current.defaultOptions());
             ScrollBarBasic.current.options(option);
         }
     },[instance]);
 
-    if(ScrollBarBasic.current){
-        ScrollBarBasic.current.extension('myBasicExtension', function(defaultOptions, framework) {
-            var osInstance = this;
-            var extension = {};
+    // if(ScrollBarBasic.current){
+    //     debugger;
+    //     ScrollBarBasic.current.extension('myBasicExtension', function(defaultOptions, framework) {
+    //         var osInstance = this;
+    //         var extension = {};
 
-            var handleElmHorizontal;
-            var handleElmVertical;
+    //         var handleElmHorizontal;
+    //         var handleElmVertical;
 
-            extension.added = function() {
-                var instanceElements = osInstance.getElements();
-                var scrollbarHorizontalHandle =
-                    instanceElements.scrollbarHorizontal.handle;
-                var scrollbarVerticalHandle = instanceElements.scrollbarVertical.handle;
-                var html =
-                    '<div style="height: 100%; width: 100%; background: red;"></div>';
+    //         extension.added = function() {
+    //             var instanceElements = osInstance.getElements();
+    //             var scrollbarHorizontalHandle =
+    //                 instanceElements.scrollbarHorizontal.handle;
+    //             var scrollbarVerticalHandle = instanceElements.scrollbarVertical.handle;
+    //             var html =
+    //                 '<div style="height: 100%; width: 100%; background: red;"></div>';
 
-                handleElmHorizontal = framework(html);
-                handleElmVertical = framework(html);
+    //             handleElmHorizontal = framework(html);
+    //             handleElmVertical = framework(html);
 
-                framework(scrollbarHorizontalHandle).append(handleElmHorizontal);
-                framework(scrollbarVerticalHandle).append(handleElmVertical);
-            };
+    //             framework(scrollbarHorizontalHandle).append(handleElmHorizontal);
+    //             framework(scrollbarVerticalHandle).append(handleElmVertical);
+    //         };
 
-            extension.removed = function() {
-                handleElmHorizontal.remove();
-                handleElmVertical.remove();
-            };
+    //         extension.removed = function() {
+    //             handleElmHorizontal.remove();
+    //             handleElmVertical.remove();
+    //         };
 
-            return extension;
-        });
-    }
+    //         return extension;
+    //     });
+    // }
 
 
     return (
