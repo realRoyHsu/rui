@@ -22,11 +22,6 @@ let scrollOptions = {
 let scrollOption = '{\n\tclassName     : "os-theme-dark",\n\tresize       : "both",\n\tsizeAutoCapable : true,\n\tpaddingAbsolute : true,\n\tscrollbars : {\n\t\tclickScrolling : true\n\t}\n}';
 console.log(parseJson(scrollOption,'scroll'),$);
 export default function Basic() {
-<<<<<<< HEAD
-    const ScrollBarBasic = useRef(null);
-    const CodeMirrorBox = useRef(null);
-    CodeMirrorBox.change();
-=======
     const [instance, setInstance] = useState(null);
     const [className, setClassName] = useState('codemirror-host');
     const [value, setValue] = useState(scrollOption);
@@ -80,41 +75,39 @@ export default function Basic() {
         }
     },[instance]);
 
-    // if(ScrollBarBasic.current){
-    //     debugger;
-    //     ScrollBarBasic.current.extension('myBasicExtension', function(defaultOptions, framework) {
-    //         var osInstance = this;
-    //         var extension = {};
+    if(ScrollBarBasic.current){
+        ScrollBarBasic.current.extension('myBasicExtension', function(defaultOptions, framework) {
+            var osInstance = this;
+            var extension = {};
 
-    //         var handleElmHorizontal;
-    //         var handleElmVertical;
+            var handleElmHorizontal;
+            var handleElmVertical;
 
-    //         extension.added = function() {
-    //             var instanceElements = osInstance.getElements();
-    //             var scrollbarHorizontalHandle =
-    //                 instanceElements.scrollbarHorizontal.handle;
-    //             var scrollbarVerticalHandle = instanceElements.scrollbarVertical.handle;
-    //             var html =
-    //                 '<div style="height: 100%; width: 100%; background: red;"></div>';
+            extension.added = function() {
+                var instanceElements = osInstance.getElements();
+                var scrollbarHorizontalHandle =
+                    instanceElements.scrollbarHorizontal.handle;
+                var scrollbarVerticalHandle = instanceElements.scrollbarVertical.handle;
+                var html =
+                    '<div style="height: 100%; width: 100%; background: red;"></div>';
 
-    //             handleElmHorizontal = framework(html);
-    //             handleElmVertical = framework(html);
+                handleElmHorizontal = framework(html);
+                handleElmVertical = framework(html);
 
-    //             framework(scrollbarHorizontalHandle).append(handleElmHorizontal);
-    //             framework(scrollbarVerticalHandle).append(handleElmVertical);
-    //         };
+                framework(scrollbarHorizontalHandle).append(handleElmHorizontal);
+                framework(scrollbarVerticalHandle).append(handleElmVertical);
+            };
 
-    //         extension.removed = function() {
-    //             handleElmHorizontal.remove();
-    //             handleElmVertical.remove();
-    //         };
+            extension.removed = function() {
+                handleElmHorizontal.remove();
+                handleElmVertical.remove();
+            };
 
-    //         return extension;
-    //     });
-    // }
+            return extension;
+        });
+    }
 
 
->>>>>>> 3651a8b41022676382b804f811fb91554333a7ac
     return (
         <div>
             <CodeMirror
