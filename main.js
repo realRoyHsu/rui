@@ -22,7 +22,7 @@ function createWindow () {
         protocol: 'file:',
         slashes: true,
     }));
-  // 加载应用----适用于 react 项目
+  // 加载应用----适用于 react 开发配置
 //   mainWindow.loadURL('http://localhost:3000/');
 
   // 打开开发者工具，默认不打开
