@@ -15,7 +15,7 @@
         "test": "node scripts/test.js",
         "build:dll": "webpack --config ./config/webpack.dll.config.js",
         "electron:start": "electron .",
-        "electron:build": "electron-packager ./build rui --platform=win32 --arch=x64 --out=./out --asar --app-version=0.0.1 --electron-version=6.0.1",
+        "electron:build": "electron-packager ./build rui --platform=win32 --arch=x64 --out=./../out --app-version=0.0.1 --electron-version=6.0.1",
         "compile": "rollup -c rollup/rollup.config.js",
         "pub": "lerna publish"
     },

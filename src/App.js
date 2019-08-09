@@ -1,6 +1,6 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // import Basic from '@/view/Basic/index';
 import NotFound from '@/common/NotFound.jsx';
