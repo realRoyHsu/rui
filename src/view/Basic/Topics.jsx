@@ -23,19 +23,20 @@ function Topics(props) {
 					</li>
 				</ul>
 			</div>
-			{/* <Route 
-            path={`${match.path}/:topicId`} 
+			{/* <Route
+            path={`${match.path}/:topicId`}
             render={({match})=>{  return <h3>{match.params.topicId}</h3>}} /> */}
 			{/* <Route
-            path={`${match.path}/:topicId`} 
+            path={`${match.path}/:topicId`}
             component={Topic} /> */}
 			{routes.map((route, i) => (
-				<RouteWithSubRoutes key={i} {...route} />
+				<RouteWithSubRoutes key={i}
+                        {...route} />
 			))}
 			<Route
-				exact
-				path={match.path}
-				render={() => <h3>Please select a topic.</h3>}
+    exact
+    path={match.path}
+    render={() => <h3>Please select a topic.</h3>}
 			/>
 		</div>
 	);

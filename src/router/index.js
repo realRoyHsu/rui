@@ -6,6 +6,13 @@ import routes from './config';
 import AllComponent from '@/view/index.js';
 
 export default class CRouter extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          auth : false, // 表示是否认证通过
+          hasAuthed: false, // 表示是否向服务器发送过认证请求
+        };
+    }
     render () {
         return (
             <Switch>
