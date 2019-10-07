@@ -15,57 +15,57 @@ console.log('Creating an optimized production build...');
 // rollup -c
 const config = [];
 components.forEach((component) => {
-    config.push({
-        input: `packages/${component}/index.js`,
-        output: [
-            {
-                file: `packages/${component}/es/index.js`,
-                format: 'esm',
-                sourceMap: false,
-            },
-            {
-                file: `packages/${component}/cjs/index.js`,
-                format: 'cjs',
-                sourceMap: false,
-            }
+  config.push({
+    input: `packages/${component}/index.js`,
+    output: [
+      {
+        file: `packages/${component}/es/index.js`,
+        format: 'esm',
+        sourceMap: false,
+      },
+      {
+        file: `packages/${component}/cjs/index.js`,
+        format: 'cjs',
+        sourceMap: false,
+      }
+    ],
+    plugins: [
+      json(),
+      resolve(),
+      commonjs({
+        include: /node_modules/,
+        namedExports: {
+          'node_modules/react/index.js': ['Component', 'PureComponent', 'Fragment', 'Children', 'createElement'],
+        },
+      }),
+      clear({
+        targets: [
+          `packages/${component}/es`,
+          `packages/${component}/cjs`,
         ],
-        plugins: [
-            json(),
-            resolve(),
-            commonjs({
-                include: /node_modules/,
-                namedExports: {
-                    'node_modules/react/index.js': ['Component', 'PureComponent', 'Fragment', 'Children', 'createElement'],
-                },
-            }),
-            clear({
-                targets: [
-                    `packages/${component}/es`,
-                    `packages/${component}/cjs`,
-                ],
-                watch: true,
-            }),
-            babel({
-                exclude: '**node_modules/**',
-                presets: ['@babel/preset-env', '@babel/preset-react'],
-            }),
-            postcss({
-                plugins: [],
-                extract: true,
-                // minimize: true,
-                // sourceMap: true,
-            })
-            // scss({ output: 'packages/scrollbar/es/scrollbar.css' })
-            // '@babel/plugin-external-helpers', // 这里
-        ],
-        external: [
-            'React',
-            'ReactDOM',
-            'reactRouterDom',
-            'overlayscrollbars',
-            'prop-types'
-        ],
-    });
+        watch: true,
+      }),
+      babel({
+        exclude: '**node_modules/**',
+        presets: ['@babel/preset-env', '@babel/preset-react'],
+      }),
+      postcss({
+        plugins: [],
+        extract: true,
+        // minimize: true,
+        // sourceMap: true,
+      })
+      // scss({ output: 'packages/scrollbar/es/scrollbar.css' })
+      // '@babel/plugin-external-helpers', // 这里
+    ],
+    external: [
+      'React',
+      'ReactDOM',
+      'reactRouterDom',
+      'overlayscrollbars',
+      'prop-types'
+    ],
+  });
 });
 
 export default config;
