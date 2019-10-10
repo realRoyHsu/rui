@@ -48,6 +48,7 @@ components.forEach((component) => {
             babel({
                 exclude: '**node_modules/**',
                 presets: ['@babel/preset-env', '@babel/preset-react'],
+                plugins: ['@babel/plugin-proposal-object-rest-spread'],
             }),
             postcss({
                 plugins: [],
